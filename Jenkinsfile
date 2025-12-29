@@ -1,26 +1,18 @@
 pipeline{
-    //agent any
-  agent{
-        label 'java-slave2'
+    agent{
+        label 'java-slave'
     }
-    stages {
-            stage('Build'){
-                steps{
-                    echo "This is a build stage"
-                    sleep 20
-                    echo "Sleep is completed"
-                }
+    environment{
+        DEPLOY_TO = 'development'
+    }
+    stages{
+        stage('ProdEnv'){
+            when{
+               environment name : 'DEPLOY_TO', value : 'production' 
             }
-            stage('groovycodestage'){
-                steps{
-                    script{
-                        def course = "k8s"
-                        if (course == "k8s")
-                        println("Thanks for enrolling to k8s course")
-                        else
-                        println("Do enrollment to k8s")
-                    }
-                }
+            steps{
+                echo "**** Deploying to Production ****"
             }
+        }
     }
 }
