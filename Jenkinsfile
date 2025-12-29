@@ -25,16 +25,19 @@ pipeline{
             }
         }
         stage('DeployToStage'){
-            when{
-                expression{
-                    BRANCH_NAME == ~ /(production | staging) /
-                }
+            when {
+                branch 'release/*'
             }
             steps{
                 echo "**** Deploying to Stage Environment ****"
             }
         }
         stage('DeployToProd'){
+            when{
+                expression{
+                    BRANCH_NAME == ~ /(production | staging) /
+                }
+            }
             steps{
                 echo "**** Deploying to Prod Environment ****"
             }
