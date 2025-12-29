@@ -2,16 +2,36 @@ pipeline{
     agent{
         label 'java-slave'
     }
-    environment{
-        DEPLOY_TO = 'development'
-    }
     stages{
-        stage('ProdEnv'){
-            when{
-               environment name : 'DEPLOY_TO', value : 'production' 
-            }
+        stage('Build'){
             steps{
-                echo "**** Deploying to Production ****"
+                echo "Building the application"
+            }
+
+        }
+        stage('Scans'){
+            steps{
+                echo "Performing the scans"
+            }
+        }
+        stage('DeployToDev'){
+            steps{
+                echo "**** Deploying to Dev Environment ****"
+            }
+        }
+        stage('DeployToTest'){
+            steps{
+                echo "**** Deploying to Test Environment ****"
+            }
+        }
+        stage('DeployToStage'){
+            steps{
+                echo "**** Deploying to Stage Environment ****"
+            }
+        }
+        stage('DeployToProd'){
+            steps{
+                echo "**** Deploying to Prod Environment ****"
             }
         }
     }
