@@ -26,7 +26,7 @@ pipeline{
         }
         stage('DeployToStage'){
             when {
-                branch 'release/*'
+                branch 'release-*'
             }
             steps{
                 echo "**** Deploying to Stage Environment ****"
@@ -35,7 +35,7 @@ pipeline{
         stage('DeployToProd'){
             when{
                 expression{
-                    BRANCH_NAME == ~/(production | staging)/
+                    BRANCH_NAME == ~ /(production | staging) /
                 }
             }
             steps{
