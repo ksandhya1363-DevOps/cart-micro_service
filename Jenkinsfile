@@ -3,7 +3,7 @@ pipeline{
         label 'java-slave'
     }
     environment{
-        DEPLOY_TO = 'development'
+        DEPLOY_TO = 'production'
     }
     stages{
         stage("DeploytoDev"){
@@ -13,7 +13,7 @@ pipeline{
             }
         stage('ProdEnv'){
             when{
-                allOf{
+                anyOf{
                     branch 'production'
                     environment name : 'DEPLOY_TO', value : 'production'
                 } 
