@@ -27,6 +27,7 @@ pipeline{
         stage('DeployToStage'){
             when {
                 branch 'release-*'
+                tag pattern: "v\\d{1,2}.v\\d{1,2}.v\\d{1,2}", comparator: "REGEXP" 
             }
             steps{
                 echo "**** Deploying to Stage Environment ****"
