@@ -3,7 +3,7 @@ pipeline{
         lable 'java-slave'
     }
     stages{
-        stages('Build'){
+        stage('Build'){
             echo "Building the application"
         }
         stage('ParallelStageScans'){
