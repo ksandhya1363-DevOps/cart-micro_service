@@ -1,10 +1,12 @@
 pipeline{
     agent{
-        lable 'java-slave'
+        lable 'java-slave1'
     }
     stages{
         stage('Build'){
-            echo "Building the application"
+            steps{
+                 echo "Building the application"
+            }
         }
         stage('ParallelStageScans'){
             parallel{
