@@ -1,25 +1,31 @@
 pipeline{
     agent{
-        label 'java-slave'
-    }
-    environment{
-        DEPLOY_TO = 'production'
+        lable 'java-slave'
     }
     stages{
-        stage("DeploytoDev"){
-                steps{
-                    echo "Deploying to Dev Environment"
+        stages('Build'){
+            echo "Building the application"
+        }
+        stage('ParallelStageScans'){
+            parallel{
+                stage('Sonar'){
+                    steps{
+                        echo "Sonar scan is executing"
+                        sleep(10)
+                    }
                 }
-            }
-        stage('ProdEnv'){
-            when{
-                anyOf{
-                    branch 'production'
-                    environment name : 'DEPLOY_TO', value : 'production'
-                } 
-            }
-            steps{
-                echo "**** Deploying to Production ****"
+                stage('Fortify'){
+                    steps{
+                        echo "Fortify scan is executing"
+                        sleep(10)
+                    }
+                }
+                stage('Prisma'){
+                    steps{
+                        echo "Prisma scan is executing"
+                        sleep(10)
+                    }
+                }
             }
         }
     }
