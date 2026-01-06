@@ -9,17 +9,17 @@ pipeline{
             description: 'What is your name'
         ) 
         choice(
-        name: 'Choose'
-        choices: ['one','two','three']
+        name: 'Choose',
+        choices: ['one','two','three'],
         description: 'pick any number below'
     )
     booleanParam(
-        name: 'TOOGLE'
+        name: 'TOOGLE',
         defaultValue: true,
         description: 'Toogle this value'
     )
     text(
-        name: 'ReleaseDetails'
+        name: 'ReleaseDetails',
         defaultValue: '',
         description: 'Enter spme details about todays deployement '
     )
