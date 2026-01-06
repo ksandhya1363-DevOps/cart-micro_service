@@ -10,7 +10,7 @@ pipeline{
         ) 
     }
     stages{
-        stages('ParameterStage'){
+        stage('ParameterStage'){
                 steps{
                     echo "Hello, ${params.Person}"
                 }
