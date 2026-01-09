@@ -16,7 +16,9 @@ pipeline{
     booleanParam(
         name: 'TOOGLE',
         defaultValue: true,
-        description: 'Is this release approved by SRE??? '
+        description: 'Is this release approved by SRE??? ',
+        name: 'TOOGLE',
+        defaultValue: ''
     )
     text(
         name: 'ReleaseDetails',
