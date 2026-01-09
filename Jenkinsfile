@@ -13,12 +13,16 @@ pipeline{
         choices: ['dev','test','stage'],
         description: 'Which env should we deploy'
     )
+        choice(
+            name: 'TSETING_DONE',
+        defaultValue: 'Yes',
+        choice:['me','others'],
+        description:'We have completed testing'
+        )
     booleanParam(
         name: 'TOOGLE',
         defaultValue: true,
         description: 'Is this release approved by SRE??? ',
-        name: 'TOOGLE',
-        defaultValue: ''
     )
     text(
         name: 'ReleaseDetails',
